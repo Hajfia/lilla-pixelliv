@@ -1,0 +1,12 @@
+.room-object {
+    position: absolute;
+    left: calc(var(--x) * var(--scale) * 1px);
+    top: calc(var(--y) * var(--scale) * 1px);
+    width: calc(var(--width) * var(--scale) * 1px);
+    image-rendering: pixelated;
+    transition: left 200ms ease-out, top 200ms ease-out, width 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
