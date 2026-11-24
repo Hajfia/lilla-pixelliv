@@ -1,7 +1,15 @@
+$scene-width: 640px;
+$scene-height: 360px;
+
 .room {
     position: relative;
-    width: 1280px;
-    height: 720px; 
+    width: calc(#{$scene-width} * var(--scale));
+    height: calc(#{$scene-height} * var(--scale));
+    transition: width 200ms ease-out, height 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
 }
 
 .room-bg {
