@@ -1,0 +1,26 @@
+.screen-glow {
+    height: calc(var(--height) * var(--scale) * 1px);
+    background: radial-gradient(
+        closest-side,
+        rgb(159 227 255 / 55%),
+        rgb(95 180 232 / 25%) 55%,
+        transparent
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0;
+    transition:
+        opacity 600ms ease-in-out,
+        left 200ms ease-out,
+        top 200ms ease-out,
+        width 200ms ease-out,
+        height 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.screen-glow--on {
+    opacity: 1;
+}

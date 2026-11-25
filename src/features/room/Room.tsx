@@ -13,8 +13,14 @@ import doorClosed from "./assets/images/door-closed.png"
 import doorOpenImg from "./assets/images/door-open.png"
 import switchOn from "./assets/images/switch-on.png"
 import switchOff from "./assets/images/switch-off.png"
+import desk from "./assets/images/desk.png"
+import computerTower from "./assets/images/computer-tower.png"
+import computerOnImg from "./assets/images/computer-on.png"
+import computerOff from "./assets/images/computer-off.png"
+import butterflyChair from "./assets/images/butterfly-chair.png"
 import RoomObject from "./components/RoomObject"
 import LampGlow from "./components/LampGlow"
+import ScreenGlow from "./components/ScreenGlow"
 import CrossFadeObject from "./components/CrossFadeObject"
 import Clock from "./components/Clock"
 import BigClock from "./components/BigClock"
@@ -33,6 +39,8 @@ const Room = () => {
   const toggleLights = useRoomStore((state) => state.toggleLights)
   const doorOpen = useRoomStore((state) => state.doorOpen)
   const toggleDoor = useRoomStore((state) => state.toggleDoor)
+  const computerOn = useRoomStore((state) => state.computerOn)
+  const toggleComputer = useRoomStore((state) => state.toggleComputer)
   const openItem = useUiStore((state) => state.openItem)
   const originRect = useUiStore((state) => state.originRect)
   const openModal = useUiStore((state) => state.openModal)
@@ -62,7 +70,7 @@ const Room = () => {
         <RoomObject
           src={painting}
           alt="Tavla med en kyckling"
-          x={91}
+          x={71}
           y={130}
           width={49}
           onClick={(event) => openModal("painting", event.currentTarget.getBoundingClientRect())}
@@ -93,6 +101,26 @@ const Room = () => {
           pressed={lightsOn}
         />
         <RoomObject src={sofa} alt="Ljusblå soffa" x={52} y={220} width={125} />
+        <RoomObject src={desk} alt="Vitt skrivbord med lådor" x={353} y={228} width={96} />
+        <RoomObject
+          src={computerTower}
+          alt="Datorlåda"
+          x={404}
+          y={241}
+          width={15}
+          onClick={toggleComputer}
+          pressed={computerOn}
+        />
+        <RoomObject
+          src={computerOn ? computerOnImg : computerOff}
+          alt="Rosa dator"
+          x={361}
+          y={199}
+          width={41}
+          onClick={toggleComputer}
+          pressed={computerOn}
+        />
+        <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} />
         <RoomObject src={doorFrame} alt="" x={607} y={147} width={33} />
         <RoomObject
           src={doorOpen ? doorOpenImg : doorClosed}
@@ -113,6 +141,7 @@ const Room = () => {
           pressed={lightsOn}
         />
         <div className={lightsOn ? "room-night" : "room-night room-night--on"} />
+        <ScreenGlow cx={381} cy={211} on={computerOn && !lightsOn} />
         <ZoomModal open={openItem === "painting"} origin={originRect} label="Tavlan förstorad" onClose={closeModal}>
           <img src={painting} alt="Tavla med en kyckling" className="painting-zoom" />
         </ZoomModal>
