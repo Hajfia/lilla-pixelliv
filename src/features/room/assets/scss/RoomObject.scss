@@ -10,3 +10,21 @@
         transition: none;
     }
 }
+
+.room-object--button {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    img {
+        display: block;
+        width: 100%;
+        image-rendering: pixelated;
+    }
+
+    &:focus-visible {
+        outline: 2px dashed #b4507a;
+        outline-offset: 2px;
+    }
+}

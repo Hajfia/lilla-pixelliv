@@ -17,3 +17,20 @@ $scene-height: 360px;
     width: 100%;
     image-rendering: pixelated;
 }
+
+.room-night {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(28 18 58 / 40%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 600ms ease-in-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.room-night--on {
+    opacity: 1;
+}
