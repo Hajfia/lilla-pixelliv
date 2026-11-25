@@ -7,6 +7,7 @@ import windowRightNight from "./assets/images/window2-night.png"
 import lampOn from "./assets/images/lamp-on.png"
 import lampOff from "./assets/images/lamp-off.png"
 import painting from "./assets/images/painting-chick.png"
+import clockFace from "./assets/images/clock-face.png"
 import sofa from "./assets/images/sofa.png"
 import doorFrame from "./assets/images/door-frame.png"
 import doorClosed from "./assets/images/door-closed.png"
@@ -19,6 +20,8 @@ import CrossFadeObject from "./components/CrossFadeObject"
 import Clock from "./components/Clock"
 import { useRoomScale } from "./hooks/useRoomScale"
 import { useRoomStore } from "./store/roomStore"
+import { useUiStore } from "../../shared/store/uiStore"
+import ZoomModal from "../../shared/components/ZoomModal"
 import "./assets/scss/Room.scss"
 
 const SCENE_WIDTH = 640
@@ -30,6 +33,10 @@ const Room = () => {
   const toggleLights = useRoomStore((state) => state.toggleLights)
   const doorOpen = useRoomStore((state) => state.doorOpen)
   const toggleDoor = useRoomStore((state) => state.toggleDoor)
+  const openItem = useUiStore((state) => state.openItem)
+  const originRect = useUiStore((state) => state.originRect)
+  const openModal = useUiStore((state) => state.openModal)
+  const closeModal = useUiStore((state) => state.closeModal)
 
   return (
     <div className="room" style={{ "--scale": scale } as CSSProperties}>
@@ -52,8 +59,19 @@ const Room = () => {
           y={108}
           width={98}
         />
-        <RoomObject src={painting} alt="Tavla med en kyckling" x={91} y={130} width={49} />
-        <Clock x={383} y={120} />
+        <RoomObject
+          src={painting}
+          alt="Tavla med en kyckling"
+          x={91}
+          y={130}
+          width={49}
+          onClick={(event) => openModal("painting", event.currentTarget.getBoundingClientRect())}
+        />
+        <Clock
+          x={383}
+          y={120}
+          onClick={(event) => openModal("clock", event.currentTarget.getBoundingClientRect())}
+        />
         <LampGlow cx={190} cy={74} on={lightsOn} />
         <LampGlow cx={410} cy={74} on={lightsOn} />
         <RoomObject
@@ -95,6 +113,12 @@ const Room = () => {
           pressed={lightsOn}
         />
         <div className={lightsOn ? "room-night" : "room-night room-night--on"} />
+        <ZoomModal open={openItem === "painting"} origin={originRect} label="Tavlan förstorad" onClose={closeModal}>
+          <img src={painting} alt="Tavla med en kyckling" className="painting-zoom" />
+        </ZoomModal>
+        <ZoomModal open={openItem === "clock"} origin={originRect} label="Klockan förstorad" onClose={closeModal}>
+          <img src={clockFace} alt="" className="clock-zoom" />
+        </ZoomModal>
     </div>
   )
 }

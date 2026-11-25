@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react"
+import type { CSSProperties, MouseEvent } from "react"
 import "../assets/scss/RoomObject.scss"
 
 type RoomObjectProps = {
@@ -7,7 +7,7 @@ type RoomObjectProps = {
   x: number
   y: number
   width: number
-  onClick?: () => void
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   pressed?: boolean
 }
 

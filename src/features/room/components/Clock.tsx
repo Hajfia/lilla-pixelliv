@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from "react"
+import { useEffect, useRef, type CSSProperties, type MouseEvent } from "react"
 import clockFace from "../assets/images/clock-face.png"
 import { useNow } from "../hooks/useNow"
 import "../assets/scss/Clock.scss"
@@ -13,6 +13,7 @@ const PIN_COLOR = "#8a5cc4"
 type ClockProps = {
   x: number
   y: number
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 const handTip = (angle: number, length: number) => ({
@@ -44,7 +45,7 @@ const drawPixelLine = (ctx: CanvasRenderingContext2D, x0: number, y0: number, x1
   }
 }
 
-const Clock = ({ x, y }: ClockProps) => {
+const Clock = ({ x, y, onClick }: ClockProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const now = useNow()
   const hours = now.getHours()
@@ -73,13 +74,19 @@ const Clock = ({ x, y }: ClockProps) => {
   const style = { "--x": x, "--y": y, "--width": SIZE } as CSSProperties
 
   return (
-    <div className="room-object clock" style={style} tabIndex={0} role="img" aria-label={`Klockan är ${time}`}>
+    <button
+      type="button"
+      className="room-object room-object--button clock"
+      style={style}
+      onClick={onClick}
+      aria-label={`Klockan är ${time}`}
+    >
       <img src={clockFace} alt="" />
       <canvas ref={canvasRef} width={SIZE} height={SIZE} className="clock__hands" />
       <span className="clock__digital" aria-hidden="true">
         {time}
       </span>
-    </div>
+    </button>
   )
 }
 

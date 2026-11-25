@@ -4,7 +4,7 @@
     top: calc(var(--y) * var(--scale) * 1px);
     width: calc(var(--width) * var(--scale) * 1px);
     image-rendering: pixelated;
-    transition: left 200ms ease-out, top 200ms ease-out, width 200ms ease-out;
+    transition: left 200ms ease-out, top 200ms ease-out, width 200ms ease-out, filter 200ms ease-out;
 
     @media (prefers-reduced-motion: reduce) {
         transition: none;
@@ -21,6 +21,15 @@
         display: block;
         width: 100%;
         image-rendering: pixelated;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            z-index: 1;
+            filter:
+                drop-shadow(0 0 calc(1px * var(--scale)) rgb(255 240 190))
+                drop-shadow(0 0 calc(3px * var(--scale)) rgb(255 205 100 / 85%));
+        }
     }
 
     &:focus-visible {

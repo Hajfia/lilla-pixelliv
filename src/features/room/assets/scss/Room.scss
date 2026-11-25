@@ -34,3 +34,17 @@ $scene-height: 360px;
 .room-night--on {
     opacity: 1;
 }
+
+.painting-zoom {
+    display: block;
+    width: calc(49px * 5 * var(--scale));
+    height: calc(57px * 5 * var(--scale));
+    image-rendering: pixelated;
+}
+
+.clock-zoom {
+    display: block;
+    width: calc(35px * 7 * var(--scale));
+    height: calc(35px * 7 * var(--scale));
+    image-rendering: pixelated;
+}
