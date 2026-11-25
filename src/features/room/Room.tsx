@@ -7,7 +7,6 @@ import windowRightNight from "./assets/images/window2-night.png"
 import lampOn from "./assets/images/lamp-on.png"
 import lampOff from "./assets/images/lamp-off.png"
 import painting from "./assets/images/painting-chick.png"
-import clockFace from "./assets/images/clock-face.png"
 import sofa from "./assets/images/sofa.png"
 import doorFrame from "./assets/images/door-frame.png"
 import doorClosed from "./assets/images/door-closed.png"
@@ -18,6 +17,7 @@ import RoomObject from "./components/RoomObject"
 import LampGlow from "./components/LampGlow"
 import CrossFadeObject from "./components/CrossFadeObject"
 import Clock from "./components/Clock"
+import BigClock from "./components/BigClock"
 import { useRoomScale } from "./hooks/useRoomScale"
 import { useRoomStore } from "./store/roomStore"
 import { useUiStore } from "../../shared/store/uiStore"
@@ -117,7 +117,7 @@ const Room = () => {
           <img src={painting} alt="Tavla med en kyckling" className="painting-zoom" />
         </ZoomModal>
         <ZoomModal open={openItem === "clock"} origin={originRect} label="Klockan förstorad" onClose={closeModal}>
-          <img src={clockFace} alt="" className="clock-zoom" />
+          <BigClock />
         </ZoomModal>
     </div>
   )

@@ -42,9 +42,3 @@ $scene-height: 360px;
     image-rendering: pixelated;
 }
 
-.clock-zoom {
-    display: block;
-    width: calc(35px * 7 * var(--scale));
-    height: calc(35px * 7 * var(--scale));
-    image-rendering: pixelated;
-}

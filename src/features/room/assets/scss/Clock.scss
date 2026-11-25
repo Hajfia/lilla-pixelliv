@@ -19,30 +19,3 @@
     height: 100%;
     image-rendering: pixelated;
 }
-
-.clock__digital {
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    padding: calc(1px * var(--scale)) calc(3px * var(--scale));
-    border: calc(1px * var(--scale)) solid #4a2a6e;
-    border-radius: calc(2px * var(--scale));
-    background-color: #fff;
-    color: #2b2233;
-    font: bold calc(9px * var(--scale)) / 1 monospace;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(-50%, calc(3px * var(--scale)));
-    transition: opacity 200ms ease-out;
-
-    @media (prefers-reduced-motion: reduce) {
-        transition: none;
-    }
-}
-
-.clock:hover .clock__digital,
-.clock:focus-visible .clock__digital {
-    opacity: 1;
-}
