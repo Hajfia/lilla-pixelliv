@@ -16,6 +16,7 @@ import switchOff from "./assets/images/switch-off.png"
 import RoomObject from "./components/RoomObject"
 import LampGlow from "./components/LampGlow"
 import CrossFadeObject from "./components/CrossFadeObject"
+import Clock from "./components/Clock"
 import { useRoomScale } from "./hooks/useRoomScale"
 import { useRoomStore } from "./store/roomStore"
 import "./assets/scss/Room.scss"
@@ -38,8 +39,8 @@ const Room = () => {
           fadeSrc={windowLeftNight}
           faded={!lightsOn}
           alt={lightsOn ? "Fönster med sol" : "Fönster med stjärnhimmel"}
-          x={60}
-          y={98}
+          x={261}
+          y={108}
           width={98}
         />
         <CrossFadeObject
@@ -48,17 +49,18 @@ const Room = () => {
           faded={!lightsOn}
           alt={lightsOn ? "Fönster med moln" : "Fönster med stjärnhimmel"}
           x={440}
-          y={98}
+          y={108}
           width={98}
         />
-        <RoomObject src={painting} alt="Tavla med en kyckling" x={285} y={112} width={49} />
+        <RoomObject src={painting} alt="Tavla med en kyckling" x={91} y={130} width={49} />
+        <Clock x={383} y={120} />
         <LampGlow cx={190} cy={74} on={lightsOn} />
         <LampGlow cx={410} cy={74} on={lightsOn} />
         <RoomObject
           src={lightsOn ? lampOn : lampOff}
           alt="Taklampa"
           x={175}
-          y={0}
+          y={10}
           width={30}
           onClick={toggleLights}
           pressed={lightsOn}
@@ -67,12 +69,12 @@ const Room = () => {
           src={lightsOn ? lampOn : lampOff}
           alt="Taklampa"
           x={395}
-          y={0}
+          y={10}
           width={30}
           onClick={toggleLights}
           pressed={lightsOn}
         />
-        <RoomObject src={sofa} alt="Ljusblå soffa" x={52} y={216} width={112} />
+        <RoomObject src={sofa} alt="Ljusblå soffa" x={52} y={220} width={125} />
         <RoomObject src={doorFrame} alt="" x={607} y={147} width={33} />
         <RoomObject
           src={doorOpen ? doorOpenImg : doorClosed}
