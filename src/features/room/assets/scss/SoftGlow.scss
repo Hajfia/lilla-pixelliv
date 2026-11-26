@@ -1,11 +1,5 @@
-.screen-glow {
+.soft-glow {
     height: calc(var(--height) * var(--scale) * 1px);
-    background: radial-gradient(
-        closest-side,
-        rgb(159 227 255 / 55%),
-        rgb(95 180 232 / 25%) 55%,
-        transparent
-    );
     mix-blend-mode: screen;
     pointer-events: none;
     opacity: 0;
@@ -21,6 +15,24 @@
     }
 }
 
-.screen-glow--on {
+.soft-glow--on {
     opacity: 1;
+}
+
+.soft-glow--blue {
+    background: radial-gradient(
+        closest-side,
+        rgb(159 227 255 / 55%),
+        rgb(95 180 232 / 25%) 55%,
+        transparent
+    );
+}
+
+.soft-glow--lilac {
+    background: radial-gradient(
+        closest-side,
+        rgb(222 204 255 / 60%),
+        rgb(169 138 224 / 28%) 55%,
+        transparent
+    );
 }

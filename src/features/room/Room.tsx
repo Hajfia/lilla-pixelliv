@@ -25,9 +25,23 @@ import tableLampOff from "./assets/images/table-lamp-off.png"
 import foodShelf from "./assets/images/food-shelf.png"
 import foodPicture from "./assets/images/food-picture.png"
 import seedBag from "./assets/images/seed-bag.png"
+import bowlEmpty from "./assets/images/bowl-empty.png"
+import bookShelf from "./assets/images/book-shelf.png"
+import books from "./assets/images/books.png"
+import lavaLampOff from "./assets/images/lava-lamp-off.png"
+import lavaLampOn from "./assets/images/lava-lamp-on.png"
+import vaseLilies from "./assets/images/vase-lilies.png"
+import radioOff from "./assets/images/radio-off.png"
+import clothesRack from "./assets/images/clothes-rack.png"
+import boots from "./assets/images/boots.png"
+import heels from "./assets/images/heels.png"
+import fishCabinet from "./assets/images/fish-cabinet.png"
+import fishbowl from "./assets/images/fishbowl.png"
+import fishbowlFed from "./assets/images/fishbowl-fed.png"
+import fishFood from "./assets/images/fish-food.png"
 import RoomObject from "./components/RoomObject"
 import LampGlow from "./components/LampGlow"
-import ScreenGlow from "./components/ScreenGlow"
+import SoftGlow from "./components/SoftGlow"
 import CrossFadeObject from "./components/CrossFadeObject"
 import Clock from "./components/Clock"
 import BigClock from "./components/BigClock"
@@ -50,6 +64,10 @@ const Room = () => {
   const toggleComputer = useRoomStore((state) => state.toggleComputer)
   const sideLampOn = useRoomStore((state) => state.sideLampOn)
   const toggleSideLamp = useRoomStore((state) => state.toggleSideLamp)
+  const lavaOn = useRoomStore((state) => state.lavaLampOn)
+  const toggleLavaLamp = useRoomStore((state) => state.toggleLavaLamp)
+  const fishFed = useRoomStore((state) => state.fishFed)
+  const feedFish = useRoomStore((state) => state.feedFish)
   const openItem = useUiStore((state) => state.openItem)
   const originRect = useUiStore((state) => state.originRect)
   const openModal = useUiStore((state) => state.openModal)
@@ -76,14 +94,31 @@ const Room = () => {
           y={108}
           width={98}
         />
+        <RoomObject src={fishFood} alt="Burk med fiskmat, mata fiskarna" x={318} y={188} width={10} onClick={feedFish} />
         <RoomObject
           src={painting}
           alt="Tavla med en kyckling"
-          x={71}
-          y={130}
+          x={68}
+          y={135}
           width={49}
           onClick={(event) => openModal("painting", event.currentTarget.getBoundingClientRect())}
         />
+        <RoomObject src={bookShelf} alt="Vit vägghylla" x={128} y={192} width={48} />
+        <RoomObject src={books} alt="Fem böcker i pastellfärger" x={146} y={177} width={25} />
+        <RoomObject
+          src={lavaOn ? lavaLampOn : lavaLampOff}
+          alt="Rosa lavalampa"
+          x={133}
+          y={167}
+          width={13}
+          onClick={toggleLavaLamp}
+          pressed={lavaOn}
+          frames={lavaOn ? 12 : undefined}
+          duration={3000}
+        />
+        <RoomObject src={bookShelf} alt="Vit vägghylla" x={128} y={155} width={48} />
+        <RoomObject src={radioOff} alt="Mintgrön radio" x={135} y={138} width={36} />
+        <RoomObject src={clothesRack} alt="Klädstång med kläder" x={195} y={170} width={60} />
         <Clock
           x={383}
           y={120}
@@ -124,6 +159,18 @@ const Room = () => {
           onClick={toggleSideLamp}
           pressed={sideLampOn}
         />
+        <RoomObject src={boots} alt="Svarta stövlar med pälskant" x={211} y={235} width={23} />
+        <RoomObject src={heels} alt="Rosa klackskor" x={235} y={246} width={18} />
+        <RoomObject src={fishCabinet} alt="Rosa plastskåp med två dörrar" x={276} y={228} width={48} />
+        <RoomObject
+          src={fishFed ? fishbowlFed : fishbowl}
+          alt={fishFed ? "Fiskskål där guldfiskarna får mat" : "Fiskskål med två guldfiskar"}
+          x={285}
+          y={205}
+          width={30}
+          frames={24}
+          duration={3000}
+        />
         <RoomObject src={desk} alt="Vitt skrivbord med lådor" x={353} y={228} width={96} />
         <RoomObject
           src={computerTower}
@@ -143,7 +190,9 @@ const Room = () => {
           onClick={toggleComputer}
           pressed={computerOn}
         />
+        <RoomObject src={vaseLilies} alt="Glasvas med rosa liljor" x={405} y={186} width={32} />
         <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} />
+        <RoomObject src={bowlEmpty} alt="Tom matskål" x={547} y={253} width={26} />
         <RoomObject src={doorFrame} alt="" x={607} y={147} width={33} />
         <RoomObject
           src={doorOpen ? doorOpenImg : doorClosed}
@@ -164,8 +213,10 @@ const Room = () => {
           pressed={lightsOn}
         />
         <div className={lightsOn ? "room-night" : "room-night room-night--on"} />
-        <ScreenGlow cx={381} cy={211} on={computerOn && !lightsOn} />
+        <SoftGlow cx={381} cy={211} on={computerOn && !lightsOn} />
         <LampGlow cx={195} cy={228} on={sideLampOn} />
+        <SoftGlow cx={139} cy={177} on={lavaOn && !lightsOn} width={56} height={56} color="lilac" />
+        <SoftGlow cx={300} cy={218} on={!lightsOn} width={56} height={48} />
         <ZoomModal open={openItem === "painting"} origin={originRect} label="Tavlan förstorad" onClose={closeModal}>
           <img src={painting} alt="Tavla med en kyckling" className="painting-zoom" />
         </ZoomModal>

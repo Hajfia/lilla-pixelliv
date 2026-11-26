@@ -37,3 +37,26 @@
         outline-offset: 2px;
     }
 }
+
+.sprite {
+    display: block;
+    overflow: hidden;
+
+    .sprite__strip {
+        display: block;
+        width: calc(var(--frames) * 100%);
+        max-width: none;
+        image-rendering: pixelated;
+        animation: sprite-play var(--duration) steps(var(--frames)) infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+@keyframes sprite-play {
+    to {
+        transform: translateX(-100%);
+    }
+}

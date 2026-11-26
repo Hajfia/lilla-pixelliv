@@ -9,12 +9,28 @@ type RoomObjectProps = {
   width: number
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   pressed?: boolean
+  frames?: number
+  duration?: number
 }
 
-const RoomObject = ({ src, alt, x, y, width, onClick, pressed }: RoomObjectProps) => {
+const RoomObject = ({ src, alt, x, y, width, onClick, pressed, frames, duration = 1000 }: RoomObjectProps) => {
   const style = { "--x": x, "--y": y, "--width": width } as CSSProperties
+  const spriteStyle = { "--frames": frames, "--duration": `${duration}ms` } as CSSProperties
+
+  const sprite = frames ? (
+    <span className="sprite" style={spriteStyle}>
+      <img src={src} alt="" className="sprite__strip" />
+    </span>
+  ) : null
 
   if (!onClick) {
+    if (sprite) {
+      return (
+        <span className="room-object" style={style} role="img" aria-label={alt}>
+          {sprite}
+        </span>
+      )
+    }
     return <img src={src} alt={alt} className="room-object" style={style} />
   }
 
@@ -27,7 +43,7 @@ const RoomObject = ({ src, alt, x, y, width, onClick, pressed }: RoomObjectProps
       aria-pressed={pressed}
       aria-label={alt}
     >
-      <img src={src} alt="" />
+      {sprite ?? <img src={src} alt="" />}
     </button>
   )
 }
