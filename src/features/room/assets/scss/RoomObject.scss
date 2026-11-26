@@ -12,10 +12,22 @@
 }
 
 .room-object--button {
+    --hit-padding: 4;
+
     padding: 0;
     border: 0;
     background: none;
     cursor: pointer;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: calc(var(--hit-padding) * var(--scale) * -1px);
+    }
+
+    @media (pointer: coarse) {
+        --hit-padding: 6;
+    }
 
     img {
         display: block;

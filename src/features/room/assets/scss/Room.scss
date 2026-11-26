@@ -5,6 +5,7 @@ $scene-height: 360px;
     position: relative;
     width: calc(#{$scene-width} * var(--scale));
     height: calc(#{$scene-height} * var(--scale));
+    overflow: hidden;
     transition: width 200ms ease-out, height 200ms ease-out;
 
     @media (prefers-reduced-motion: reduce) {
@@ -37,8 +38,8 @@ $scene-height: 360px;
 
 .painting-zoom {
     display: block;
-    width: calc(49px * 5 * var(--scale));
-    height: calc(57px * 5 * var(--scale));
+    width: calc(54px * 5 * var(--scale));
+    height: calc(56px * 5 * var(--scale));
     image-rendering: pixelated;
 }
 
