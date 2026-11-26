@@ -1,0 +1,74 @@
+.room-object {
+    position: absolute;
+    left: calc(var(--x) * var(--scale) * 1px);
+    top: calc(var(--y) * var(--scale) * 1px);
+    width: calc(var(--width) * var(--scale) * 1px);
+    image-rendering: pixelated;
+    transition: left 200ms ease-out, top 200ms ease-out, width 200ms ease-out, filter 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.room-object--button {
+    --hit-padding: 4;
+
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: calc(var(--hit-padding) * var(--scale) * -1px);
+    }
+
+    @media (pointer: coarse) {
+        --hit-padding: 6;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        image-rendering: pixelated;
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            z-index: 1;
+            filter:
+                drop-shadow(0 0 calc(1px * var(--scale)) rgb(255 240 190))
+                drop-shadow(0 0 calc(3px * var(--scale)) rgb(255 205 100 / 85%));
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px dashed #b4507a;
+        outline-offset: 2px;
+    }
+}
+
+.sprite {
+    display: block;
+    overflow: hidden;
+
+    .sprite__strip {
+        display: block;
+        width: calc(var(--frames) * 100%);
+        max-width: none;
+        image-rendering: pixelated;
+        animation: sprite-play var(--duration) steps(var(--frames)) infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+@keyframes sprite-play {
+    to {
+        transform: translateX(-100%);
+    }
+}

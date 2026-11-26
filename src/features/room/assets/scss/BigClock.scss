@@ -1,0 +1,19 @@
+.big-clock {
+    position: relative;
+    width: calc(97px * 3 * var(--scale));
+    height: calc(97px * 3 * var(--scale));
+
+    img {
+        display: block;
+        width: 100%;
+        image-rendering: pixelated;
+    }
+}
+
+.big-clock__hands {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}

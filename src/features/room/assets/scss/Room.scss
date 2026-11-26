@@ -1,7 +1,16 @@
+$scene-width: 640px;
+$scene-height: 360px;
+
 .room {
     position: relative;
-    width: 1280px;
-    height: 720px; 
+    width: calc(#{$scene-width} * var(--scale));
+    height: calc(#{$scene-height} * var(--scale));
+    overflow: hidden;
+    transition: width 200ms ease-out, height 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
 }
 
 .room-bg {
@@ -9,3 +18,28 @@
     width: 100%;
     image-rendering: pixelated;
 }
+
+.room-night {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(28 18 58 / 40%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 600ms ease-in-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.room-night--on {
+    opacity: 1;
+}
+
+.painting-zoom {
+    display: block;
+    width: calc(54px * 5 * var(--scale));
+    height: calc(56px * 5 * var(--scale));
+    image-rendering: pixelated;
+}
+

@@ -1,0 +1,17 @@
+.lamp-glow {
+    pointer-events: none;
+    opacity: 0;
+    transition:
+        opacity 600ms ease-in-out,
+        left 200ms ease-out,
+        top 200ms ease-out,
+        width 200ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}
+
+.lamp-glow--on {
+    opacity: 1;
+}
