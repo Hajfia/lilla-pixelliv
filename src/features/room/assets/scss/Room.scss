@@ -32,6 +32,11 @@ $scene-height: 360px;
     }
 }
 
+.room-night,
+.room-night ~ .room-object {
+    z-index: 1000;
+}
+
 .room-night--on {
     opacity: 1;
 }

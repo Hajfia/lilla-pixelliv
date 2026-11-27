@@ -1,0 +1,87 @@
+.pet {
+    position: absolute;
+    left: calc(var(--x) * var(--scale) * 1px);
+    top: calc(var(--y) * var(--scale) * 1px);
+    width: calc(var(--width) * var(--scale) * 1px);
+    z-index: var(--z);
+    image-rendering: pixelated;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.pet--walk {
+    transition: left var(--move) linear;
+}
+
+.pet--hop {
+    transition:
+        left var(--move) ease-in-out,
+        top var(--move) ease-in-out;
+
+    .pet__body {
+        animation: pet-hop var(--move) ease-in-out;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+.pet--held {
+    cursor: grabbing;
+
+    .pet__body {
+        transform-origin: 50% 10%;
+        animation: pet-dangle 500ms ease-in-out infinite alternate;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+.pet--fall {
+    transition:
+        left var(--move) ease-out,
+        top var(--move) ease-in;
+}
+
+.pet--land .pet__body {
+    transform-origin: 50% 100%;
+    animation: pet-land 220ms ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-duration: 1ms;
+    }
+}
+
+.pet__body {
+    display: block;
+}
+
+.pet__body--right {
+    scale: -1 1;
+}
+
+@keyframes pet-hop {
+    50% {
+        translate: 0 calc(-12px * var(--scale));
+    }
+}
+
+@keyframes pet-dangle {
+    from {
+        rotate: -3deg;
+    }
+
+    to {
+        rotate: 3deg;
+    }
+}
+
+@keyframes pet-land {
+    40% {
+        transform: scale(1.12, 0.85);
+    }
+}

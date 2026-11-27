@@ -68,6 +68,7 @@ import { useRoomScale } from "./hooks/useRoomScale"
 import { useRoomStore } from "./store/roomStore"
 import { useUiStore } from "../../shared/store/uiStore"
 import ZoomModal from "../../shared/components/ZoomModal"
+import Pet from "../pet/components/Pet"
 import "./assets/scss/Room.scss"
 
 const SCENE_WIDTH = 640
@@ -257,7 +258,7 @@ const Room = () => {
         />
         <RoomObject src={vaseLilies} alt="Glasvas med rosa liljor" x={405} y={186} width={32} />
         <RoomObject src={plant} alt="Grön växt i rosa kruka" x={486} y={208} width={48} />
-        <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} />
+        <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} depth={283} />
         <RoomObject src={bowlEmpty} alt="Tom matskål" x={547} y={253} width={26} />
         <RoomObject src={doorFrame} alt="" x={607} y={147} width={33} />
         <RoomObject
@@ -278,6 +279,7 @@ const Room = () => {
           onClick={toggleLights}
           pressed={lightsOn}
         />
+        <Pet />
         <div className={lightsOn ? "room-night" : "room-night room-night--on"} />
         <SoftGlow cx={381} cy={211} on={computerOn && !lightsOn} />
         <LampGlow cx={195} cy={228} on={sideLampOn} />
