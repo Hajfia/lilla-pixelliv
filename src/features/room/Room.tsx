@@ -68,6 +68,7 @@ import { useRoomScale } from "./hooks/useRoomScale"
 import { useRoomStore } from "./store/roomStore"
 import { useUiStore } from "../../shared/store/uiStore"
 import ZoomModal from "../../shared/components/ZoomModal"
+import Pet from "../pet/components/Pet"
 import "./assets/scss/Room.scss"
 
 const SCENE_WIDTH = 640
@@ -278,6 +279,7 @@ const Room = () => {
           onClick={toggleLights}
           pressed={lightsOn}
         />
+        <Pet />
         <div className={lightsOn ? "room-night" : "room-night room-night--on"} />
         <SoftGlow cx={381} cy={211} on={computerOn && !lightsOn} />
         <LampGlow cx={195} cy={228} on={sideLampOn} />
