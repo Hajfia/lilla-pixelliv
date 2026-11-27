@@ -15,8 +15,11 @@ export const usePetRoaming = () => {
     const timer = window.setTimeout(() => {
       const { lane, x, walkTo, hopTo } = usePetStore.getState()
 
-      if (Math.random() < HOP_CHANCE) {
-        const neighbours = [lane - 1, lane + 1].filter((next) => next >= 0 && next < LANES.length)
+      const neighbours = [lane - 1, lane + 1].filter(
+        (next) => next >= 0 && next < LANES.length && x >= LANE_BOUNDS[next].min && x <= LANE_BOUNDS[next].max,
+      )
+
+      if (neighbours.length > 0 && Math.random() < HOP_CHANCE) {
         hopTo(neighbours[Math.floor(Math.random() * neighbours.length)])
         return
       }
