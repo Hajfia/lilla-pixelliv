@@ -2,7 +2,7 @@ import { create } from "zustand"
 
 export const LANES = [272, 305, 338]
 export const LANE_BOUNDS = [
-  { min: 200, max: 580 },
+  { min: 210, max: 580 },
   { min: 40, max: 600 },
   { min: 40, max: 600 },
 ]
