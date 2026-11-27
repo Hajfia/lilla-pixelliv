@@ -1,0 +1,40 @@
+.pet {
+    position: absolute;
+    left: calc(var(--x) * var(--scale) * 1px);
+    top: calc(var(--y) * var(--scale) * 1px);
+    width: calc(var(--width) * var(--scale) * 1px);
+    z-index: var(--z);
+    image-rendering: pixelated;
+}
+
+.pet--walk {
+    transition: left var(--move) linear;
+}
+
+.pet--hop {
+    transition:
+        left var(--move) ease-in-out,
+        top var(--move) ease-in-out;
+
+    .pet__body {
+        animation: pet-hop var(--move) ease-in-out;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+}
+
+.pet__body {
+    display: block;
+}
+
+.pet__body--right {
+    scale: -1 1;
+}
+
+@keyframes pet-hop {
+    50% {
+        translate: 0 calc(-12px * var(--scale));
+    }
+}

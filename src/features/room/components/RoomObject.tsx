@@ -11,10 +11,11 @@ type RoomObjectProps = {
   pressed?: boolean
   frames?: number
   duration?: number
+  depth?: number
 }
 
-const RoomObject = ({ src, alt, x, y, width, onClick, pressed, frames, duration = 1000 }: RoomObjectProps) => {
-  const style = { "--x": x, "--y": y, "--width": width } as CSSProperties
+const RoomObject = ({ src, alt, x, y, width, onClick, pressed, frames, duration = 1000, depth }: RoomObjectProps) => {
+  const style = { "--x": x, "--y": y, "--width": width, "--z": depth } as CSSProperties
   const spriteStyle = { "--frames": frames, "--duration": `${duration}ms` } as CSSProperties
 
   const sprite = frames ? (

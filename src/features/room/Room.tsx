@@ -258,7 +258,7 @@ const Room = () => {
         />
         <RoomObject src={vaseLilies} alt="Glasvas med rosa liljor" x={405} y={186} width={32} />
         <RoomObject src={plant} alt="Grön växt i rosa kruka" x={486} y={208} width={48} />
-        <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} />
+        <RoomObject src={butterflyChair} alt="Rosa fjärilsstol" x={358} y={225} width={36} depth={283} />
         <RoomObject src={bowlEmpty} alt="Tom matskål" x={547} y={253} width={26} />
         <RoomObject src={doorFrame} alt="" x={607} y={147} width={33} />
         <RoomObject
